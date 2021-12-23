@@ -1,32 +1,51 @@
+
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="container">
+    <div class="menu">
+      <router-link to="/">Home</router-link>
+      <router-link to="/completed">Completed</router-link>
     </div>
-    <router-view/>
+
+    <div class="body">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: rgb(24, 24, 92);
+  color: #cecece;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100%;
+  display: flex;
 }
-
-#nav {
-  padding: 30px;
+.menu {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
-
-#nav a {
+.menu a {
+  text-decoration: none;
   font-weight: bold;
-  color: #2c3e50;
+  margin: 2.55rem 0;
+  color: #cecece;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.menu a.router-link-exact-active {
+  color: rgb(85, 109, 173);
+}
+.body {
+  background-color: rgb(85, 109, 173);
+  width: 90%;
 }
 </style>
