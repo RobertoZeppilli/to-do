@@ -6,21 +6,30 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     todos: [],
-    newTodo: ''
+    newTodo: '',
+    newUserName: ''
   },
   mutations: {
+    INITIALIZE_STORE(state) {
+      if (localStorage.getItem('store')) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem('store')))
+        );
+      }
+    },
     GET_TODO(state, todo) {
       state.newTodo = todo
     },
+    GET_USERNAME(state, name) {
+      state.newUserName = name
+    },
     ADD_TODO(state) {
-      state.todos.push({
+      let currentTodo = {
+        username: state.newUserName || '',
         body: state.newTodo,
         completed: false
-      })
-      // localStorage.newTodo = JSON.stringify({
-      //   body: state.newTodo,
-      //   completed: false
-      // })
+      }
+      state.todos.push(currentTodo)
     },
     EDIT_TODO(state, todo) {
       let todos = state.todos
@@ -38,10 +47,16 @@ export default new Vuex.Store({
     CLEAR_TODO(state) {
       state.newTodo = ''
     },
+    CLEAR_USERNAME(state) {
+      state.newUserName = ''
+    }
   },
   actions: {
     getTodo({ commit }, todo) {
       commit('GET_TODO', todo)
+    },
+    getUsername({ commit }, name) {
+      commit('GET_USERNAME', name)
     },
     addTodo({ commit }) {
       commit('ADD_TODO')
@@ -57,15 +72,20 @@ export default new Vuex.Store({
     },
     clearTodo({ commit }) {
       commit('CLEAR_TODO')
+    },
+    clearUsername({ commit }) {
+      commit('CLEAR_USERNAME')
     }
   },
   getters: {
     newTodo: state => state.newTodo,
-    todos: state => state.todos,
-    // todos: state => state.todos.filter((todo) => { return !todo.completed }),
-    completedTodos: state => state.todos.filter((todo) => todo.completed)
-  },
-  modules: {
+    todos: state => state.todos.filter((todo) => todo.username == state.newUserName),
+    newUserName: state => state.newUserName,
+    completedTodos: state => state.todos.filter((todo) => {
+      if (todo.completed && todo.username == state.newUserName) {
+        return todo
+      }
+    })
   }
 })
 

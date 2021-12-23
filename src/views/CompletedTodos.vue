@@ -1,11 +1,11 @@
 <template>
   <div id="completed-todos">
-    <h1>Completed todos</h1>
+    <h1>{{newUserName}}'s completed todos</h1>
     <div v-if="completed.length" class="completed-container">
       <div v-for="todo in completed" :key="todo.id" class="col">
-        <span :class="[{ complete: todo.completed }, 'todo-body']">
+        <h2 :class="[{ complete: todo.completed }]">
           {{ todo.body }}
-        </span>
+        </h2>
         <div class="actions">
           <button type="button" @click="complete(todo)" class="btn">
             {{ todo.completed ? "Undo" : "Completed" }}
@@ -13,9 +13,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
-        No Completed!
-    </div>
+    <div v-else>No Completed!</div>
   </div>
 </template>
 <script>
@@ -29,25 +27,28 @@ export default {
     completed() {
       return this.$store.getters.completedTodos;
     },
+    newUserName() {
+      return this.$store.getters.newUserName;
+    },
   },
 };
 </script>
 
 <style scoped>
 #completed-todos {
-    padding: 2.85rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 2.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #completed-todos h1 {
-    margin-bottom: 2.25rem;
+  margin-bottom: 2.25rem;
 }
 .completed-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .complete {
   color: rgb(126, 182, 126);
@@ -59,15 +60,19 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 2em;
   padding: 0.85rem;
+  width: 40%;
+  transition: border-radius .3s ease-in-out;
+}
+.col:hover {
+    border-radius: 2rem 4.85rem;
+
 }
 
 .btn {
   outline: none;
   border: none;
   background: none;
-  margin-left: 0.85rem;
   cursor: pointer;
   color: #cecece;
 }

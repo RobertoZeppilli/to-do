@@ -4,6 +4,7 @@
     <div class="menu">
       <router-link to="/">Home</router-link>
       <router-link to="/completed">Completed</router-link>
+      <router-link to="/login">Change User</router-link>
     </div>
 
     <div class="body">
@@ -17,6 +18,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 body {

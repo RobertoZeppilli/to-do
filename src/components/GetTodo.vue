@@ -1,6 +1,7 @@
 
 <template>
   <div id="get-todo" class="container">
+    <h1>{{newUserName}}'s List</h1>
     <div class="todo-input">
       <input
         class="form-control"
@@ -29,18 +30,24 @@ export default {
     },
   },
   components: {
-    CurrentTodos
+    CurrentTodos,
   },
   computed: {
     newTodo() {
       return this.$store.getters.newTodo;
+    },
+    newUserName() {
+      return this.$store.getters.newUserName;
     },
   },
 };
 </script>
 
 <style scoped>
-
+h1 {
+  text-align: center;
+  margin-bottom: 1.55rem;
+}
 .container {
   max-width: 500px;
   margin: 50px auto;
@@ -60,5 +67,4 @@ export default {
   outline: none;
   border: none;
 }
-
 </style>

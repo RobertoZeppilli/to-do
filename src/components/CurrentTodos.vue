@@ -1,7 +1,11 @@
 <template>
   <div id="current-todos" class="container">
-    <div v-for="todo in todos" :key="todo.id" class="current-todo">
-      <span :class="[{ complete: todo.completed }, 'todo-body']">
+    <div
+      v-for="todo in todos"
+      :key="todo.id"
+      :class="[{ complete: todo.completed }, 'current-todo']"
+    >
+      <span>
         {{ todo.body }}
       </span>
       <div class="actions">
@@ -11,6 +15,7 @@
         </button>
         <button type="button" @click="remove(todo)" class="btn">Remove</button>
       </div>
+      <div class="username">{{ todo.username }}</div>
     </div>
   </div>
 </template>
@@ -32,14 +37,11 @@ export default {
       return this.$store.getters.todos;
     },
   },
-  updated() {
-    console.log(this.todos);
-  },
 };
 </script>
 <style scoped>
 .complete {
-  color: rgb(126, 182, 126);
+  background-color: rgb(126, 182, 126);
 }
 
 .current-todo {
@@ -47,7 +49,19 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.85rem;
+  padding: 1.95rem 0.85rem;
+  position: relative;
+  margin-bottom: 0.45rem;
+}
+.username {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #cecece;
+  color: #191919;
+  font-weight: bold;
+  font-size: 0.75rem;
+  padding: 0.45rem;
 }
 
 .btn {
