@@ -1,7 +1,7 @@
 
 <template>
   <div id="get-todo" class="container">
-    <h1>{{newUserName}}'s List</h1>
+    <h1>{{ newUserName }}'s List</h1>
     <div class="todo-input">
       <input
         class="form-control"
@@ -9,7 +9,7 @@
         @change="getTodo"
         placeholder="I need to..."
       />
-      <button class="btn" @click="addTodo">Add Todo</button>
+      <button class="btn" @click="addTodo">{{ isEditing ? 'Edit' : 'Add' }}</button>
     </div>
     <CurrentTodos></CurrentTodos>
   </div>
@@ -27,6 +27,7 @@ export default {
     addTodo() {
       this.$store.dispatch("addTodo");
       this.$store.dispatch("clearTodo");
+      this.$store.dispatch("endEdit")
     },
   },
   components: {
@@ -39,6 +40,9 @@ export default {
     newUserName() {
       return this.$store.getters.newUserName;
     },
+    isEditing() {
+      return this.$store.getters.isEditing
+    }
   },
 };
 </script>

@@ -2,9 +2,10 @@
 <template>
   <div id="app" class="container">
     <div class="menu">
-      <router-link to="/">Home</router-link>
-      <router-link to="/completed">Completed</router-link>
-      <router-link to="/login">Change User</router-link>
+      <router-link to="/">Choose User</router-link>
+      <router-link to="/todolist">Your List</router-link>
+      <router-link to="/completed">Your Completed</router-link>
+      <router-link to="/all-completed">All Completed</router-link>
     </div>
 
     <div class="body">
@@ -31,7 +32,7 @@ body {
   display: flex;
 }
 .menu {
-  width: 10%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,10 +45,10 @@ body {
   color: #cecece;
 }
 .menu a.router-link-exact-active {
-  color: rgb(85, 109, 173);
+  color: rgb(76, 209, 64);
 }
 .body {
   background-color: rgb(85, 109, 173);
-  width: 90%;
+  width: 75%;
 }
 </style>

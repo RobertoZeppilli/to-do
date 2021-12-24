@@ -24,6 +24,7 @@ export default {
   methods: {
     edit(todo) {
       this.$store.dispatch("editTodo", todo);
+      this.$store.dispatch("isEditing")
     },
     complete(todo) {
       this.$store.dispatch("completeTodo", todo);

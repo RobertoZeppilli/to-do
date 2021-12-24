@@ -1,6 +1,6 @@
 <template>
   <div id="completed-todos">
-    <h1>{{newUserName}}'s completed todos</h1>
+    <h1>{{ newUserName }}'s completed todos</h1>
     <div v-if="completed.length" class="completed-container">
       <div v-for="todo in completed" :key="todo.id" class="col">
         <h2 :class="[{ complete: todo.completed }]">
@@ -62,11 +62,10 @@ export default {
   align-items: center;
   padding: 0.85rem;
   width: 40%;
-  transition: border-radius .3s ease-in-out;
+  transition: border-radius 0.3s ease-in-out;
 }
 .col:hover {
-    border-radius: 2rem 4.85rem;
-
+  border-radius: 2rem 4.85rem;
 }
 
 .btn {

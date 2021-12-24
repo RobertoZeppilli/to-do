@@ -6,7 +6,7 @@
       @change="getUsername"
       placeholder="Insert your name..."
     />
-    <router-link to="/" @click="clearUsername">Go to Todolist</router-link>
+    <button class="btn" type="submit" @click="goToList">Login</button>
   </div>
 </template>
 
@@ -16,9 +16,11 @@ export default {
     getUsername(e) {
       this.$store.dispatch("getUsername", e.target.value);
     },
-    clearUsername() {
-      this.$store.dispatch("clearUsername");
+    goToList() {
+      // this.$store.dispatch("clearUsername")
+      this.$router.push({ path: "/todolist" });
     },
+   
   },
   computed: {
     newUserName() {
@@ -42,11 +44,13 @@ export default {
   outline: none;
   border: none;
   font-size: 1.75rem;
+  margin-bottom: 1.85rem;
 }
-.login a {
-  text-decoration: none;
-  color: #cecece;
+.login .btn {
+  outline: none;
+  border: none;
   font-weight: bold;
-  margin-top: 1.55rem;
+  padding: .75rem 1.65rem;
+  cursor: pointer;
 }
 </style>
